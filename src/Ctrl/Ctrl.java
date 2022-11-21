@@ -36,11 +36,13 @@ public class Ctrl implements CtrlIhm, CtrlIhmGestionUser {
     
 
     public void hashPasword() {
-        refIhm.showVideo(refWrk.getVideo());
+   //     refIhm.showVideo(refWrk.getVideo());
+        refWrk.afficheLcd("co;true");
     }
 
     public void start() {
         refIhm.start();
+        refWrk.demarrerServeur();
         
 
     }

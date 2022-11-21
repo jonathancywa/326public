@@ -37,7 +37,7 @@ public class WrkTCP extends Thread {
         } catch (Exception exc) {
         
         }
-
+        clients = new ArrayList<>();
     }
          public void arreterServeur() {
         try {

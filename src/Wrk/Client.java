@@ -76,6 +76,14 @@ public class Client extends Thread {
         }
 
     }
+    public void ecrire(String msg) {
+        try {
+            out.write(msg + "\n");
+            out.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
      public boolean isRunning() {
         return running;
     }

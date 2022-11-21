@@ -107,8 +107,10 @@ public class Ihm implements ItfIhmCtrl {
 
     @FXML
     private void act_btn_gestionUser(ActionEvent event) {
-//        refCtrl.hashPasword();
+   refCtrl.hashPasword();
         System.out.println("oui");
+     
+        
     }
 
     @FXML

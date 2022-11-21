@@ -33,7 +33,7 @@ public class Wrk implements ItfWrkTcpWrk{
 	 * @param string
 	 */
 	public void afficheLcd(String string){
-
+            wrkTcp.EnvoieMessage(string);
 	}
 
     public void setRefCtrl(Ctrl refCtrl) {
