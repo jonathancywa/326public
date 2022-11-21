@@ -1,12 +1,8 @@
 package Ihm;
 
 import Ctrl.Ctrl;
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Calendar;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,8 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
-import javax.imageio.ImageIO;
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
 /**
  * @author GamezJ

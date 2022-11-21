@@ -16,9 +16,6 @@ public class WrkPhidget extends Thread {
 
     }
 
-    public void finalize() throws Throwable {
-
-    }
 
     /**
      *

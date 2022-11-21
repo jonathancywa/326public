@@ -17,9 +17,7 @@ public class WrkUdp implements ItfWrkUdpWrkRobot {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
+	
 	/**
 	 * 
 	 * @param image

@@ -16,9 +16,7 @@ public class IhmGestionUser {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
+	
 	public void enregistrer(){
 
 	}

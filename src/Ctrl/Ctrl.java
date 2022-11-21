@@ -33,9 +33,7 @@ public class Ctrl implements CtrlIhm, CtrlIhmGestionUser {
         this.refWrk = refWrk;
     }
 
-    public void finalize() throws Throwable {
-
-    }
+    
 
     public void hashPasword() {
         refIhm.showVideo(refWrk.getVideo());
