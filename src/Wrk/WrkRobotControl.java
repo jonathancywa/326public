@@ -23,12 +23,7 @@ public class WrkRobotControl {
 	 * @param touche,posx,posy
 	 */
 	public void setMouvement(String[] string){
-            switch (touche) {
-                case val:
-                    
-                    break;
-                default:
-                    throw new AssertionError();
-            }
+          
+            
 	}
 }//end WrkRobotControl

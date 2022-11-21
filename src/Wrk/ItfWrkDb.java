@@ -5,6 +5,7 @@
 package Wrk;
 
 import beans.User;
+import java.util.List;
 
 /**
  *
@@ -25,7 +26,7 @@ public interface ItfWrkDb {
 	 */
 	public void lire(String string);
 
-	public void lireDb();
+	public List<User> lireDb();
 
 	/**
 	 * 

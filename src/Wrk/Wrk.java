@@ -4,6 +4,7 @@ import Ctrl.Ctrl;
 
 import beans.User;
 import ch.emf.info.robot.links.Robot;
+import java.util.List;
 
 /**
  * @author GamezJ
@@ -18,6 +19,7 @@ public class Wrk implements ItfWrkTcpWrk{
 	private WrkRobotControl wrkRobotControl;
 	private WrkRobotVideo wrkRobotVideo = null;
         private WrkTCP wrkTcp;
+        private List<User> users;
 
 
 
