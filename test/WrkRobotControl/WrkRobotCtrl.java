@@ -42,11 +42,11 @@ public class WrkRobotCtrl {
     public void tearDown() {
     }
 
-    private void setMouvement(String[] string) {
+    private void setMouvement(String[] string, boolean debug) {
         String touche = string[1];
-        System.out.println("touche " + touche);
+        //System.out.println("touche " + touche);
         String[] cmd = touche.split(",");
-        System.out.println("la touche " + cmd[0] + " detecté");
+       // System.out.println("la touche " + cmd[0] + " detecté");
         int angle = (int) Double.parseDouble(cmd[1]);
         switch (cmd[0]) {
             case "joysticG":
@@ -56,19 +56,28 @@ public class WrkRobotCtrl {
                  short vitesseG = 0;
                  short vitesseD = 0;
                 if (angle <= 90) {
-                   vitesseG = (short) (Double.parseDouble(cmd[2]) * cosDeg * 900  );
-                   vitesseD = (short) ((Double.parseDouble(cmd[2]) * cosDeg * 900) - (sDeg * 900));
-
+                   vitesseG = (short) (Double.parseDouble(cmd[2]) * (cosDeg * 850) + (sDeg * 500));
+                   vitesseD = (short) ((Double.parseDouble(cmd[2]) * cosDeg * 850) - (sDeg * 500));
+                   // System.out.println("Multiplicateur G1 "+ (cosDeg * 900)+" Multiplicateur g2 "+ (sDeg * 500));
+                }else if (angle > 90){
+                    System.out.println("> 90");
+                   vitesseG = (short) (Double.parseDouble(cmd[2]) * (cosDeg * 850) + (sDeg * 500));
+                   vitesseD = (short) ((Double.parseDouble(cmd[2]) * cosDeg * 850) - (sDeg * 500));
                 }
-                
-                System.out.println("Direction: valeur angle " + cmd[1] + "° parse: " + Double.parseDouble(cmd[1]) + " ");
+                if (debug == true) {
+                    System.out.println("Direction: valeur angle " + cmd[1] + "° magnitude: " + cmd[2] + " ");
                 System.out.println("Tangante :" + Math.tan(Double.parseDouble(cmd[1])) * Math.PI / 180);
 
-                System.out.println("Valeur sin brute " + sDeg + " valeur transformé " + Math.sin(sDeg));
-                System.out.println("Valeur cos" + Math.cos(cosDeg));
-                System.out.println("je vais a G" + vitesseG + " je vais a d " + vitesseD);
-
-                System.out.println("je tourne");
+                System.out.println("Valeur sin " + sDeg );
+                System.out.println("Valeur cos " + Math.cos(cosDeg));
+              
+                }
+                  System.out.println("je vais a G" + vitesseG + " je vais a d " + vitesseD);
+                
+                if (vitesseG > 999 || vitesseD > 999) {
+                    System.out.println("======================== Error ========================");
+                }
+              //  System.out.println("je tourne");
                 break;
             case "joysticD":
                 System.out.println("JoysticD " + cmd[1]);
@@ -84,7 +93,11 @@ public class WrkRobotCtrl {
     public void test01_connexionRobot() {
 
         // wrk.setMouvement(new String[]{"","joysticG,80,0.5"});
-        setMouvement(new String[]{"", "joysticG,89,0.2"});
+      //  setMouvement(new String[]{"", "joysticG,40,1"}, true);
+        for (int i = 0; i <= 360; i++) {
+           setMouvement(new String[]{"", "joysticG,"+i+",1"}, false);
+            
+        }
 
     }
 
