@@ -16,18 +16,18 @@ import org.junit.runners.MethodSorters;
 /**
  *
  * @author GamezJ
- */ @FixMethodOrder( MethodSorters.NAME_ASCENDING )
+ */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class WrkRobotCtrl {
-   private Wrk wrk = new Wrk();
 
+    private Wrk wrk = new Wrk();
 
-    
-    public WrkRobotCtrl(){
-}
-  
+    public WrkRobotCtrl() {
+    }
+
     @BeforeClass
     public static void setUpClass() {
-        
+
     }
 
     @AfterClass
@@ -41,54 +41,60 @@ public class WrkRobotCtrl {
     @After
     public void tearDown() {
     }
+
     private void setMouvement(String[] string) {
         String touche = string[1];
         System.out.println("touche " + touche);
         String[] cmd = touche.split(",");
         System.out.println("la touche " + cmd[0] + " detecté");
+        int angle = (int) Double.parseDouble(cmd[1]);
         switch (cmd[0]) {
             case "joysticG":
-                double sinDeg = (Double.parseDouble(cmd[1])*Math.PI/180);
+                double sDeg = Math.sin(Double.parseDouble(cmd[1]) * Math.PI / 180);
+                double cosDeg = Math.cos(Double.parseDouble(cmd[1]) * Math.PI / 180);
+                double sin = (Math.sin(Double.parseDouble(cmd[1])));
+                 short vitesseG = 0;
+                 short vitesseD = 0;
+                if (angle <= 90) {
+                   vitesseG = (short) (Double.parseDouble(cmd[2]) * cosDeg * 900  );
+                   vitesseD = (short) ((Double.parseDouble(cmd[2]) * cosDeg * 900) - (sDeg * 900));
+
+                }
                 
-                double sin = (Math.sin(Double.parseDouble(cmd[1]))) ;
-                short vitesseG = (short) (Double.parseDouble(cmd[2])  * sinDeg * 900);
-                short vitesseD = (short) (Double.parseDouble(cmd[2])  * (Math.cos(Double.parseDouble(cmd[1]))* 500));
-                System.out.println("Direction: valeur angle "+cmd[1]+"° parse: "+Double.parseDouble(cmd[1]) +" ");
-                System.out.println(Math.sin(Double.parseDouble(cmd[1])));
-                System.out.println(Math.sin(10));
-                System.out.println(Math.asin(Double.parseDouble(cmd[1])));
-                System.out.println(Math.sinh(Double.parseDouble(cmd[1])));
+                System.out.println("Direction: valeur angle " + cmd[1] + "° parse: " + Double.parseDouble(cmd[1]) + " ");
+                System.out.println("Tangante :" + Math.tan(Double.parseDouble(cmd[1])) * Math.PI / 180);
+
+                System.out.println("Valeur sin brute " + sDeg + " valeur transformé " + Math.sin(sDeg));
+                System.out.println("Valeur cos" + Math.cos(cosDeg));
                 System.out.println("je vais a G" + vitesseG + " je vais a d " + vitesseD);
-               
+
                 System.out.println("je tourne");
                 break;
             case "joysticD":
                 System.out.println("JoysticD " + cmd[1]);
-              
+
                 break;
             default:
                 System.out.println("pas de touche detecté");
         }
 
     }
+
     @Test
-    public void test01_connexionRobot(){
-       
-      // wrk.setMouvement(new String[]{"","joysticG,80,0.5"});
-        setMouvement(new String[]{"","joysticG,0,1"});
-        
+    public void test01_connexionRobot() {
+
+        // wrk.setMouvement(new String[]{"","joysticG,80,0.5"});
+        setMouvement(new String[]{"", "joysticG,89,0.2"});
+
     }
+
     @Test
-    public void test02_deConnexionRobot(){
-        
-       
-        
+    public void test02_deConnexionRobot() {
+
     }
+
     @Test
-    public void test3_video()
-    {
-      
+    public void test3_video() {
+
     }
 }
-
-
