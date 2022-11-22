@@ -75,7 +75,7 @@ public class WrkRobotCtrl {
     public void test01_connexionRobot(){
        
       // wrk.setMouvement(new String[]{"","joysticG,80,0.5"});
-        setMouvement(new String[]{"","joysticG,79,1"});
+        setMouvement(new String[]{"","joysticG,0,1"});
         
     }
     @Test
