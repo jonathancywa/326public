@@ -26,6 +26,7 @@ public class WrkTCP extends Thread {
 
 	public WrkTCP(Wrk refWrk){
             this.refWrk = refWrk;
+          
 	}
         public void demarrerServeur(int port) {
         try {
@@ -77,7 +78,7 @@ public class WrkTCP extends Thread {
             try {
                 synchronized (serverSocket) {
                     Socket socketClient = serverSocket.accept();
-                    Client client = new Client(socketClient.getInetAddress().getHostAddress(), socketClient, this);
+                    Client client = new Client(socketClient.getInetAddress().getHostAddress(), socketClient, this, refWrk);
                     clients.add(client);
                     client.start();
                    

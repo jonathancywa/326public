@@ -12,7 +12,7 @@ public class WrkRobotVideo extends Thread {
     private WrkUdp refWrkUdp;
     private Robot robot;
     private boolean running;
-    private String ip = "10.18.1.144";
+    private String ip = "192.168.53.188";
     private int id = 43296;
     private int password = 1946706066;
     private Wrk refWrk;
@@ -44,6 +44,7 @@ public class WrkRobotVideo extends Thread {
                 robot.connect(ip, 43296, 1946706066);
                 //robot.undock();
                 System.out.println("robot connecté");
+                
 
                 retour = true;
             } catch (Exception e) {

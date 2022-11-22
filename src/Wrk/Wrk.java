@@ -16,7 +16,7 @@ public class Wrk implements ItfWrkTcpWrk{
 	private Ctrl refCtrl;
 	private WrkDb refWrkDb;
 	private Robot robot;
-	private WrkRobotControl wrkRobotControl;
+	private WrkRobotControl wrkRobotControl = new WrkRobotControl();
 	private WrkRobotVideo wrkRobotVideo = null;
         private WrkTCP wrkTcp;
         private List<User> users;
@@ -53,7 +53,8 @@ public class Wrk implements ItfWrkTcpWrk{
 	 * @param string
 	 */
 	public void setMouvement(String[] string){
-
+            
+            wrkRobotControl.setMouvement(string);
 	}
 
 	/**
@@ -103,6 +104,7 @@ public class Wrk implements ItfWrkTcpWrk{
                 wrkRobotVideo.initialise(robot);
                 if (robot.isConnected()) {
                      wrkRobotVideo.setRunning(true);
+                     wrkRobotControl.setRobot(robot);
                 wrkRobotVideo.start();
                 }else
                 {
@@ -132,5 +134,6 @@ public class Wrk implements ItfWrkTcpWrk{
         wrkTcp = new WrkTCP(this);
         wrkTcp.demarrerServeur(8888);
         wrkTcp.start();
+        
     }
 }//end Wrk

@@ -25,16 +25,23 @@ public class Client extends Thread {
     private boolean running;
     private BufferedReader in;
     private BufferedWriter out;
+    private String SPLIT = ";";
+    private Wrk refWrk;
+    
+    
 /**
  * constructeur 
  * @param name
  * @param socket
  * @param wrkTcp 
+ * @param wrk 
  */
-    public Client(String name, Socket socket, WrkTCP wrkTcp) {
+    public Client(String name, Socket socket, WrkTCP wrkTcp, Wrk wrk) {
         super(name);
         this.socket = socket;
         this.wrkTcp = wrkTcp;
+        this.refWrk = wrk;
+     
     }
     /** 
      * 
@@ -49,6 +56,7 @@ public class Client extends Thread {
     }
      @Override
     public void run() {
+        String[] info ;
         running = true;
         try {
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -59,6 +67,18 @@ public class Client extends Thread {
 
                 if (msg != null) {
                     System.out.println(msg);
+                 info =    msg.split(SPLIT);
+                 String option = info[0];
+                    switch (option) {
+                        case "": 
+                            
+                            break;
+                        case "manette":
+                            refWrk.setMouvement(info);
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
                   //  wrkServer.recevoirMessage(socket.getInetAddress().getHostAddress() + " : " + msg);
                 
                 } else {
