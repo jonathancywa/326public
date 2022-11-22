@@ -48,16 +48,14 @@ public class WrkRobotCtrl {
         System.out.println("la touche " + cmd[0] + " detecté");
         switch (cmd[0]) {
             case "joysticG":
-                double sinDeg = (Double.parseDouble(cmd[1])*Math.PI/180);
-                
+                double sDeg = (Double.parseDouble(cmd[1])*Math.PI/180);
+                double cosDeg = Math.cos(Double.parseDouble(cmd[1])*Math.PI/180);
                 double sin = (Math.sin(Double.parseDouble(cmd[1]))) ;
-                short vitesseG = (short) (Double.parseDouble(cmd[2])  * sinDeg * 900);
-                short vitesseD = (short) (Double.parseDouble(cmd[2])  * (Math.cos(Double.parseDouble(cmd[1]))* 500));
+                short vitesseG = (short) (Double.parseDouble(cmd[2])  * sDeg * 900);
+                short vitesseD = (short) (Double.parseDouble(cmd[2])  * cosDeg * 500);
                 System.out.println("Direction: valeur angle "+cmd[1]+"° parse: "+Double.parseDouble(cmd[1]) +" ");
-                System.out.println(Math.sin(Double.parseDouble(cmd[1])));
-                System.out.println(Math.sin(10));
-                System.out.println(Math.asin(Double.parseDouble(cmd[1])));
-                System.out.println(Math.sinh(Double.parseDouble(cmd[1])));
+                System.out.println("Valeur sin brute "+ sDeg +" valeur transformé "+Math.sin(sDeg));
+                System.out.println(Math.cos(cosDeg));
                 System.out.println("je vais a G" + vitesseG + " je vais a d " + vitesseD);
                
                 System.out.println("je tourne");
@@ -75,7 +73,7 @@ public class WrkRobotCtrl {
     public void test01_connexionRobot(){
        
       // wrk.setMouvement(new String[]{"","joysticG,80,0.5"});
-        setMouvement(new String[]{"","joysticG,79,1"});
+        setMouvement(new String[]{"","joysticG,180,1"});
         
     }
     @Test
