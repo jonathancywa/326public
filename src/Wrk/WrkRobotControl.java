@@ -34,8 +34,8 @@ public class WrkRobotControl implements ItfWrkRobotCtrlClient {
         switch (cmd[0]) {
             case "joysticG":
                 int angle = (int) Double.parseDouble(cmd[1]);
-                double sDeg = Math.sin(Double.parseDouble(cmd[1]) * Math.PI / 180);
-                double cosDeg = Math.cos(Double.parseDouble(cmd[1]) * Math.PI / 180);
+                double sDeg = Math.sin(Math.round(Double.parseDouble(cmd[1])) * Math.PI / 180);
+                double cosDeg = Math.cos(Math.round(Double.parseDouble(cmd[1])) * Math.PI / 180);
                 double sin = (Math.sin(Double.parseDouble(cmd[1])));
                  short vitesseG = 0;
                  short vitesseD = 0;
@@ -68,9 +68,17 @@ public class WrkRobotControl implements ItfWrkRobotCtrlClient {
                 }
               //  System.out.println("je tourne");
                 break;
-            case "joysticD":
+           case "joysticD":
                 System.out.println("JoysticD " + cmd[1]);
+                if ("haut".equals(cmd[1])) {
 
+                    robot.setHeadDirection(RobotState.HeadDirection.UP);
+                } else if ("bas".equals(cmd[1])) {
+                    robot.setHeadDirection(RobotState.HeadDirection.DOWN);
+
+                } else {
+                    robot.setHeadDirection(RobotState.HeadDirection.NONE);
+                }
                 break;
             default:
                 System.out.println("pas de touche detecté");

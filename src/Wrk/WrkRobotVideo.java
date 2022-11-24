@@ -19,6 +19,7 @@ public class WrkRobotVideo extends Thread {
 
     public WrkRobotVideo() {
         super("Thread Etat Robot");
+        refWrkUdp = new WrkUdp();
     }
 
   
@@ -96,6 +97,7 @@ public class WrkRobotVideo extends Thread {
             }
 
             refWrk.traitementVideo(robot.getLastImage());
+            refWrkUdp.sendVideod(robot.getLastImage());
 
         }
 
