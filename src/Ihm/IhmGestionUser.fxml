@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="Ihm.CtrlIhmGestionUser">
+   <children>
+      <HBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="400.0" prefWidth="199.0" spacing="20.0">
+               <children>
+                  <ListView fx:id="lst_user" prefHeight="200.0" prefWidth="200.0" />
+                  <GridPane hgap="10.0" prefHeight="126.0" prefWidth="199.0" vgap="5.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TextField fx:id="txt_nom" promptText="nom" />
+                        <TextField fx:id="txt_prenom" promptText="prenom" GridPane.columnIndex="1" />
+                        <TextField fx:id="txt_login" promptText="login" GridPane.rowIndex="1" />
+                        <TextField fx:id="txt_password" promptText="mot de passe" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txt_tag" promptText="tag_id" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="197.0" spacing="50.0">
+               <children>
+                  <CheckBox fx:id="cbx_badgeOk" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#cbx_badge" text="Badge authorisé" />
+                  <GridPane alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Grade" />
+                        <ComboBox fx:id="cmbx_grade" prefWidth="150.0" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="181.0">
+               <children>
+                  <GridPane prefHeight="168.0" prefWidth="181.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="btn_enregister" mnemonicParsing="false" onAction="#enregister" text="Enregistrer" />
+                        <Button fx:id="btn_supprimer" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" GridPane.rowIndex="1" />
+                        <Button fx:id="btn_reload" mnemonicParsing="false" onAction="#reload" text="Reload" GridPane.rowIndex="3" />
+                        <Button fx:id="btn_nouveau" mnemonicParsing="false" onAction="#nouveau" text="Nouveau" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
