@@ -5,6 +5,7 @@
 package WrkDBTest;
 
 import Wrk.WrkDb;
+import Wrk.WrkJDBC;
 import beans.User;
 import java.util.List;
 import org.junit.After;
@@ -24,12 +25,12 @@ import org.junit.runners.MethodSorters;
  */
 @FixMethodOrder( MethodSorters.NAME_ASCENDING )
 public class WrkDbTest {
-    private String PU = "Serveur_G04PU2";
-    private static WrkDb wrkDb;
+   
+    private static WrkJDBC wrkDb;
  
     @BeforeClass
     public static void setUpClass() {
-      wrkDb = new WrkDb();
+      wrkDb = new WrkJDBC();
         System.out.println("classe ok");
     }
 
@@ -47,7 +48,7 @@ public class WrkDbTest {
     @Test
     public void test01_connexionDB(){
         try {
-            wrkDb.dbConnecter(PU);
+            wrkDb.connecter("mydb");
       
         } catch (Exception e) {
         }
@@ -57,8 +58,8 @@ public class WrkDbTest {
     @Test
     public void test02_deConnexionDB(){
           try {
-            wrkDb.dbDeconnecter();
-       System.out.println( "  On est bien connectés !" );
+        
+ 
         } catch (Exception e) {
         }
        
@@ -67,21 +68,26 @@ public class WrkDbTest {
     
     @Test
     public void test3_estConnecte(){
-     
-        Assert.assertTrue( wrkDb.dbIsConnected());
+        Assert.assertTrue(wrkDb.dbEstConnectee());
+       
         
     }
     @Test
     public void test4_lire()
     {
        System.out.println( "Test de dbLirePersonnes..." );
-        List<User> liste = wrkDb.lireDb();
+        List<User> liste = wrkDb.dbLirePersonnes();
         assertNotNull( liste );
         assertFalse( liste.isEmpty() );
         for (User user : liste) {
-            System.out.println(user.getNom());
+            System.out.println(user.getNom() +" "+ user.getPrenom());
         }
         System.out.println( "  Il y a " + liste.size() + " user dans la BD." );
+    }
+    @Test
+    public void test5_login()
+    {
+        Assert.assertTrue(wrkDb.lireUser("cywa", "1234"));
     }
     
 }

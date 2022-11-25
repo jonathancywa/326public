@@ -3,12 +3,14 @@ package Wrk;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.Arrays;
+import java.util.Properties;
 import javax.imageio.ImageIO;
 
 /**
@@ -25,67 +27,34 @@ public class WrkUdp implements ItfWrkUdpWrkRobot {
     private String ip = "192.168.53.1";
     private InetAddress address;
 
+    /**
+     *initialise le socket et définit l'adresse ip.
+     */
     public WrkUdp() {
         try {
             datagramSocket = new DatagramSocket();
-            address = InetAddress.getByName("192.168.53.1");
+            address = InetAddress.getByName(lireProperties().getProperty("IP"));
         } catch (Exception e) {
         }
 
     }
+     private Properties lireProperties() throws IOException {
+        Properties conf = new Properties();
+        conf.load(new FileInputStream("config/ip.conf"));
+        return conf;
+    }
+
+   
 
     /**
      *
-     * @param image
+     * @param image byte[] contanant l'image a envoyer
+     * découpe l'image en plusieurs morceau de façon a la faire passer dans un packet.
      */
-    public void sendVideo(byte[] image) {
-     
-        BufferedImage out;
-        byte[] bytes = new byte[0];
-
-        if (image != null) {
-            try {
-                out = ImageIO.read(new ByteArrayInputStream(image));
-              
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                ImageIO.write(out, "png", baos);
-                bytes = baos.toByteArray();
-
-            } catch (Exception e) {
-            }
-
-            DatagramPacket packet
-                    = new DatagramPacket(bytes, bytes.length, address, 8889);
-            System.out.println("ouuiiiiii");
-            try {
-                datagramSocket.send(packet);
-                System.out.println("envoyé");
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-
-        }
-    }
-
-    public byte[] getip() {
-        String[] addrs = ip.split("\\.");
-        if (addrs.length != 4) {
-            throw new IllegalArgumentException("ip should be a x.x.x.x");
-        }
-        byte[] bytes = new byte[4];
-        for (int i = 0; i < 4; i++) {
-            int a = Integer.parseInt(addrs[i]);
-            if (a > 255) {
-
-            }
-        }
-        return null;
-    }
-
-    public void sendVideod(byte[] frame) {
-        float nombreDecoupe = frame.length / Short.MAX_VALUE;
+    public void sendVideod(byte[] image) {
+        float nombreDecoupe = image.length / Short.MAX_VALUE;
         for (int i = 0; i < nombreDecoupe; i++) {
-            byte[] packet = Arrays.copyOfRange(frame, (int) (i * nombreDecoupe), (int) (i * nombreDecoupe + Short.MAX_VALUE));
+            byte[] packet = Arrays.copyOfRange(image, (int) (i * nombreDecoupe), (int) (i * nombreDecoupe + Short.MAX_VALUE));
             try {
                 InetAddress.getByName(ip).getAddress();
                 DatagramPacket dp = new DatagramPacket(packet, packet.length, address, 8889);

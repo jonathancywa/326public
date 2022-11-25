@@ -76,6 +76,13 @@ public class Client extends Thread {
                         case "manette":
                             refWrk.setMouvement(info);
                             break;
+                        case "save":
+                            break;
+                        case "login":
+                        
+                        break;
+                        case "badge":
+                            break;
                         default:
                             throw new AssertionError();
                     }

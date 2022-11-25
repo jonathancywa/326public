@@ -4,129 +4,96 @@
  */
 package beans;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-
 /**
  *
- * @author 5.1
+ * @author GamezJ
  */
-@Entity
-@Table(name = "t_user")
-@NamedQueries({
-    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
-    @NamedQuery(name = "User.findByPKuser", query = "SELECT u FROM User u WHERE u.userPK.pKuser = :pKuser"),
-    @NamedQuery(name = "User.findByPrenom", query = "SELECT u FROM User u WHERE u.prenom = :prenom"),
-    @NamedQuery(name = "User.findByNom", query = "SELECT u FROM User u WHERE u.nom = :nom"),
-    @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
-    @NamedQuery(name = "User.findByBadgId", query = "SELECT u FROM User u WHERE u.badgId = :badgId"),
-    @NamedQuery(name = "User.findByFkGrade", query = "SELECT u FROM User u WHERE u.userPK.fkGrade = :fkGrade")})
-public class User implements Serializable {
+public class User {
 
-    private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected UserPK userPK;
-    @Column(name = "prenom")
-    private String prenom;
-    @Column(name = "nom")
-    private String nom;
-    @Column(name = "password")
-    private String password;
-    @Column(name = "badgId")
-    private String badgId;
-    @JoinColumn(name = "fk_grade", referencedColumnName = "pk_grade", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Grade grade;
+    public User(String nom, String prenom, String login, String password, String tag, boolean badge, Grade grade) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.login = login;
+        this.password = password;
+        this.tag = tag;
+        this.badge = badge;
+        this.grade = grade;
+    }
+
+    
 
     public User() {
     }
 
-    public User(UserPK userPK) {
-        this.userPK = userPK;
-    }
-
-    public User(int pKuser, int fkGrade) {
-        this.userPK = new UserPK(pKuser, fkGrade);
-    }
-
-    public UserPK getUserPK() {
-        return userPK;
-    }
-
-    public void setUserPK(UserPK userPK) {
-        this.userPK = userPK;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
     }
 
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getLogin() {
+        return login;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getTag() {
+        return tag;
     }
 
-    public String getBadgId() {
-        return badgId;
-    }
-
-    public void setBadgId(String badgId) {
-        this.badgId = badgId;
+    public boolean isBadge() {
+        return badge;
     }
 
     public Grade getGrade() {
         return grade;
+    }
+    
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public void setBadge(boolean badge) {
+        this.badge = badge;
     }
 
     public void setGrade(Grade grade) {
         this.grade = grade;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (userPK != null ? userPK.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
-            return false;
-        }
-        User other = (User) object;
-        if ((this.userPK == null && other.userPK != null) || (this.userPK != null && !this.userPK.equals(other.userPK))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "beans.User[ userPK=" + userPK + " ]";
-    }
     
+    private String nom;
+    private String prenom;
+    private String login;
+    private String password;
+    private String tag;
+    private boolean badge;
+    private Grade grade;
+
 }
