@@ -4,6 +4,7 @@ import Ctrl.Ctrl;
 
 import beans.User;
 import ch.emf.info.robot.links.Robot;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
 public class Wrk implements ItfWrkTcpWrk{
 
 	private Ctrl refCtrl;
-	private WrkDb refWrkDb;
+	private WrkJDBC refWrkDb;
 	private Robot robot;
 	private WrkRobotControl wrkRobotControl = new WrkRobotControl();
 	private WrkRobotVideo wrkRobotVideo = null;
@@ -24,7 +25,7 @@ public class Wrk implements ItfWrkTcpWrk{
 
 
 	public Wrk(){
-          
+          refWrkDb = new WrkJDBC();
 	}
 
 	
@@ -81,6 +82,24 @@ public class Wrk implements ItfWrkTcpWrk{
 	public void lireUser(String[] string){
 
 	}
+        /**
+         * 
+         * @param login nom d'utilisateur pour le login
+         * @param password mot de passe pour le login
+         */
+        public void loginUser(String login, String password) throws IOException{
+            if (!refWrkDb.dbEstConnectee()) {
+                
+                refWrkDb.connecter("mydb");
+            }
+         wrkTcp.EnvoieMessage("login;"+refWrkDb.lireUser(login, password));
+        }
+        public void badgLogin(String badge){
+            wrkTcp.EnvoieMessage("save;"+true);
+        }
+        public void createUser(String login, String password){
+            wrkTcp.EnvoieMessage("badge;"+true);
+        }
 
 	/**
 	 * 

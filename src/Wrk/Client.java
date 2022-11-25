@@ -27,25 +27,26 @@ public class Client extends Thread {
     private BufferedWriter out;
     private String SPLIT = ";";
     private Wrk refWrk;
-    
-    
-/**
- * constructeur 
- * @param name
- * @param socket
- * @param wrkTcp 
- * @param wrk 
- */
+
+    /**
+     * constructeur
+     *
+     * @param name
+     * @param socket
+     * @param wrkTcp
+     * @param wrk
+     */
     public Client(String name, Socket socket, WrkTCP wrkTcp, Wrk wrk) {
         super(name);
         this.socket = socket;
         this.wrkTcp = wrkTcp;
         this.refWrk = wrk;
-     
+
     }
-    /** 
-     * 
-     * @param ms 
+
+    /**
+     *
+     * @param ms
      */
     public void attendre(long ms) {
         try {
@@ -54,9 +55,10 @@ public class Client extends Thread {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     @Override
+
+    @Override
     public void run() {
-        String[] info ;
+        String[] info;
         running = true;
         try {
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -67,27 +69,34 @@ public class Client extends Thread {
 
                 if (msg != null) {
                     System.out.println(msg);
-                 info =    msg.split(SPLIT);
-                 String option = info[0];
+                    info = msg.split(SPLIT);
+                    String option = info[0];
                     switch (option) {
-                        case "": 
-                            
+                        case "":
+
                             break;
                         case "manette":
                             refWrk.setMouvement(info);
                             break;
                         case "save":
+                            refWrk.createUser(option, option);
                             break;
                         case "login":
-                        
-                        break;
+                            String[] user = info[1].split(":");
+                           
+                            String[] login = user[1].split(",");
+                           
+                            System.out.println("login[0], login[1]" + login[0] + "," + login[1]);
+                            refWrk.loginUser(login[0], login[1]);
+                            break;
                         case "badge":
+                            refWrk.badgLogin(msg);
                             break;
                         default:
                             throw new AssertionError();
                     }
-                  //  wrkServer.recevoirMessage(socket.getInetAddress().getHostAddress() + " : " + msg);
-                
+                    //  wrkServer.recevoirMessage(socket.getInetAddress().getHostAddress() + " : " + msg);
+
                 } else {
                     running = false;
                 }
@@ -103,6 +112,7 @@ public class Client extends Thread {
         }
 
     }
+
     public void ecrire(String msg) {
         try {
             out.write(msg + "\n");
@@ -111,13 +121,13 @@ public class Client extends Thread {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     public boolean isRunning() {
+
+    public boolean isRunning() {
         return running;
     }
 
     public void setRunning(boolean running) {
         this.running = running;
     }
-
 
 }

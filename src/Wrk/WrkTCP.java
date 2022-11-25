@@ -23,7 +23,7 @@ public class WrkTCP extends Thread {
 	private WrkTCP wrkTcp;
         private ServerSocket serverSocket;
         private volatile ArrayList<Client> clients;
-
+        private Client client;
 	public WrkTCP(Wrk refWrk){
             this.refWrk = refWrk;
           
@@ -55,7 +55,7 @@ public class WrkTCP extends Thread {
 	 * @param string
 	 */
 	public void EnvoieMessage(String string){
-            
+            client.ecrire(string);
 	}
 
 	public boolean isRunning(){
@@ -78,7 +78,7 @@ public class WrkTCP extends Thread {
             try {
                 synchronized (serverSocket) {
                     Socket socketClient = serverSocket.accept();
-                    Client client = new Client(socketClient.getInetAddress().getHostAddress(), socketClient, this, refWrk);
+                     client = new Client(socketClient.getInetAddress().getHostAddress(), socketClient, this, refWrk);
                     clients.add(client);
                     client.start();
                    
