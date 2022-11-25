@@ -1,10 +1,15 @@
 package Wrk;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.Arrays;
+import javax.imageio.ImageIO;
 
 /**
  * @author GamezJ
@@ -34,10 +39,23 @@ public class WrkUdp implements ItfWrkUdpWrkRobot {
      * @param image
      */
     public void sendVideo(byte[] image) {
+     
+        BufferedImage out;
+        byte[] bytes = new byte[0];
+
         if (image != null) {
+            try {
+                out = ImageIO.read(new ByteArrayInputStream(image));
+              
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ImageIO.write(out, "png", baos);
+                bytes = baos.toByteArray();
+
+            } catch (Exception e) {
+            }
 
             DatagramPacket packet
-                    = new DatagramPacket(image, image.length, address, 8889);
+                    = new DatagramPacket(bytes, bytes.length, address, 8889);
             System.out.println("ouuiiiiii");
             try {
                 datagramSocket.send(packet);
@@ -58,12 +76,11 @@ public class WrkUdp implements ItfWrkUdpWrkRobot {
         for (int i = 0; i < 4; i++) {
             int a = Integer.parseInt(addrs[i]);
             if (a > 255) {
-                
+
             }
         }
         return null;
     }
-    
 
     public void sendVideod(byte[] frame) {
         float nombreDecoupe = frame.length / Short.MAX_VALUE;
@@ -71,9 +88,9 @@ public class WrkUdp implements ItfWrkUdpWrkRobot {
             byte[] packet = Arrays.copyOfRange(frame, (int) (i * nombreDecoupe), (int) (i * nombreDecoupe + Short.MAX_VALUE));
             try {
                 InetAddress.getByName(ip).getAddress();
-                DatagramPacket dp = new DatagramPacket(packet, packet.length, address, 42069);
-              
-            datagramSocket.send(dp);
+                DatagramPacket dp = new DatagramPacket(packet, packet.length, address, 8889);
+
+                datagramSocket.send(dp);
                 return;
             } catch (IOException e) {
                 e.printStackTrace();
