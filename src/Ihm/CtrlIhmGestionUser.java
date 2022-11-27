@@ -24,6 +24,6 @@ public interface CtrlIhmGestionUser {
 	 */
 	public void deleteUser(User user);
 
-	public List<User> getUser();
+	public void getUser();
 
 }

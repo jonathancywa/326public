@@ -14,7 +14,7 @@ import javafx.application.Platform;
  * @version 1.0
  * @created 15-nov.-2022 08:16:11
  */
-public class Ctrl implements CtrlIhm, CtrlIhmGestionUser {
+public class Ctrl implements CtrlIhm {
 
     private Ihm refIhm;
     private Wrk refWrk;
@@ -33,26 +33,22 @@ public class Ctrl implements CtrlIhm, CtrlIhmGestionUser {
         this.refWrk = refWrk;
     }
 
-    
-
     public void hashPasword() {
-   //     refIhm.showVideo(refWrk.getVideo());
+        //     refIhm.showVideo(refWrk.getVideo());
         refWrk.afficheLcd("co;true");
     }
 
     public void start() {
         refIhm.start();
         refWrk.demarrerServeur();
-        
 
     }
 
     public boolean robotIsConnected() {
         boolean retour = false;
-        
+
         if (robot != null) {
-           
-            
+
             retour = robot.isConnected();
         }
         return retour;
@@ -64,7 +60,8 @@ public class Ctrl implements CtrlIhm, CtrlIhmGestionUser {
         refWrk.startRobot(robot);
 
     }
-    public void deconnecterRobot(){
+
+    public void deconnecterRobot() {
         refWrk.stopRobot(robot);
         robot = null;
     }
@@ -74,8 +71,8 @@ public class Ctrl implements CtrlIhm, CtrlIhmGestionUser {
      * @param nom
      * @param prenom
      */
-    public void addUser(String nom, String prenom) {
-
+    public void addUser(String login, String password) {
+        refWrk.createUser(login, password);
     }
 
     /**
@@ -91,13 +88,8 @@ public class Ctrl implements CtrlIhm, CtrlIhmGestionUser {
         return super.hashCode(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 
-    public User getM_User() {
-        return m_User;
-    }
-
-    @Override
     public List<User> getUser() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return refWrk.lireUser();
     }
 
     public void showVideo(byte[] img) {

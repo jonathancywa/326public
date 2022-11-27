@@ -176,7 +176,8 @@ public class WrkJDBC {
      *
      * @param u utilisateur a passer a la base de donnée.
      */
-    public void dbCreerPersonne(User u) {
+    public boolean dbCreerPersonne(User u) {
+        boolean retour = false;
         final String SQL_INSERT = "INSERT INTO t_user "
                 + "(prenom, nom, login, password, badgId, badgeOk)"
                 + " VALUES (?, ?, ?, ?, ?, ?);";
@@ -210,10 +211,12 @@ public class WrkJDBC {
             // récuperation de la clé générée et stockage dans l'objet personne
             ResultSet rs = ps.getGeneratedKeys();
             rs.next();
+            retour = true;
 //            p.setPkPers(rs.getInt(1));
         } catch (SQLException ex) {
 
         }
+        return retour;
     }
 
 }

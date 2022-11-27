@@ -1,5 +1,9 @@
 package Wrk;
 
+import beans.User;
+import java.util.List;
+
+
 
 /**
  * @author GamezJ
@@ -17,8 +21,9 @@ public interface ItfWrkTcpWrk {
 	/**
 	 * 
 	 * @param string
+     * @return list des utilisateur
 	 */
-	public void lireUser(String[] string);
+	public List<User> lireUser();
 
 	/**
 	 * 

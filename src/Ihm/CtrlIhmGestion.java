@@ -9,12 +9,12 @@ import beans.User;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import other.Popup;
 //import app.helpers.JfxPopup;
 /**
  *
@@ -47,8 +47,10 @@ public class CtrlIhmGestion implements CtrlIhmGestionUser{
     @FXML
     private Button btn_nouveau;
     private Ctrl refCtrl;
+    private Popup popup;
     public CtrlIhmGestion() {
         refCtrl = new Ctrl();
+        popup = new Popup();
     }
     
     
@@ -63,8 +65,8 @@ public class CtrlIhmGestion implements CtrlIhmGestionUser{
     }
 
     @Override
-    public List<User> getUser() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void getUser() {
+      lst_users.getItems().addAll(refCtrl.getUser()) ;
     }
 
     @FXML
@@ -74,6 +76,11 @@ public class CtrlIhmGestion implements CtrlIhmGestionUser{
 
     @FXML
     private void enregister(ActionEvent event) {
+        if (txt_login.getText().isEmpty() || txt_password.getText().isEmpty()) {
+            System.out.println("popup nok");
+        }else{
+            System.out.println("");
+        }
     }
 
     @FXML
@@ -86,9 +93,8 @@ public class CtrlIhmGestion implements CtrlIhmGestionUser{
 
     @FXML
     private void nouveau(ActionEvent event) {
-        if (txt_login.getText().isEmpty() ||txt_password.getText().isEmpty()) {
-            
-        }
+        refCtrl.addUser("new", "new");
+        
     }
     
 }
