@@ -25,7 +25,8 @@ import other.Popup;
 //import app.helpers.JfxPopup;
 /**
  *
- * @author 5.1
+ * @author Jonathan Gamez
+ * @version 1.0
  */
 public class CtrlIhmGestion implements CtrlIhmGestionUser{
 
@@ -58,11 +59,20 @@ public class CtrlIhmGestion implements CtrlIhmGestionUser{
     private final String fxml;
     private Scene principalScene;
     private Stage mainStage;
+
+    /**
+     * constructeur
+     * @param ctrl
+     */
     public CtrlIhmGestion(Ctrl ctrl) {
        this.refCtrl = ctrl;
         popup = new Popup();
           fxml = "/Ihm/IhmGestionUser.fxml";
     }
+
+    /**
+     *permet de démarrer l'imh
+     */
     public void start(){
           Callback<Class<?>, Object> controllerFactory = type -> {
             return this;
@@ -88,6 +98,7 @@ public class CtrlIhmGestion implements CtrlIhmGestionUser{
                 });
 
                 mainStage.show();
+                lst_users.getItems().setAll(refCtrl.getUser()) ;
             } catch (IOException ex) {
                 System.out.println("Can't start the IHM because : " + ex);
                 Platform.exit();
@@ -95,48 +106,76 @@ public class CtrlIhmGestion implements CtrlIhmGestionUser{
 //        });
     }
     
-    
+    /**
+     * 
+     * @param nom nom de l'utilisateur
+     * @param prenom prenom de l'utilisateur
+     */
     @Override
     public void addUser(String nom, String prenom) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       
     }
 
+    /**
+     *
+     * @param user
+     */
     @Override
     public void deleteUser(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+      
     }
 
+    /**
+     *
+     */
     @Override
     public void getUser() {
-      lst_users.getItems().addAll(refCtrl.getUser()) ;
+      lst_users.getItems().setAll(refCtrl.getUser()) ;
     }
 
     @FXML
     private void cbx_badge(ActionEvent event) {
         
     }
+    /**
+     * permet d'enregistrer les modification de l'utilisateur
+     * @param event 
+     */
 
     @FXML
     private void enregister(ActionEvent event) {
         if (txt_login.getText().isEmpty() || txt_password.getText().isEmpty()) {
+            
             System.out.println("popup nok");
         }else{
             System.out.println("");
         }
     }
-
+/**
+ * permet de supprimer l'utilisateur selectionner
+ * @param event 
+ */
     @FXML
     private void supprimer(ActionEvent event) {
+        refCtrl.deleteUser(lst_users.getSelectionModel().getSelectedItem());
+        getUser();
     }
-
+/**
+ * permet de recharger l'affichage des utilisateur
+ * @param event 
+ */
     @FXML
     private void reload(ActionEvent event) {
         lst_users.getItems().setAll(refCtrl.getUser()) ;
     }
-
+/**
+ * permet d'ajouter un nouvelle utilisateur 
+ * @param event 
+ */
     @FXML
     private void nouveau(ActionEvent event) {
         refCtrl.addUser("new", "new");
+        lst_users.getItems().setAll(refCtrl.getUser()) ;
         
     }
     

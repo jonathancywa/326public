@@ -14,8 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -212,6 +210,30 @@ public class WrkJDBC {
             // récuperation de la clé générée et stockage dans l'objet personne
             ResultSet rs = ps.getGeneratedKeys();
             rs.next();
+            retour = true;
+//            p.setPkPers(rs.getInt(1));
+        } catch (SQLException ex) {
+            System.out.println(ex);
+
+        }
+        return retour;
+    }
+    public boolean dbSupprimerUser(User u) {
+        boolean retour = false;
+        final String SQL_delete = "delete  FROM  t_user "
+                
+                + " WHERE (`login` = ?);";
+
+        // préparation d'une requête d'insertion
+        try ( PreparedStatement ps = dbConnexion.prepareStatement(SQL_delete,0)) {
+           ps.setString(1, u.getLogin());
+            
+            // exécution de la requête
+            int nb = ps.executeUpdate();
+
+            // récuperation de la clé générée et stockage dans l'objet personne
+           // ResultSet rs = ps.getGeneratedKeys();
+          //  rs.next();
             retour = true;
 //            p.setPkPers(rs.getInt(1));
         } catch (SQLException ex) {

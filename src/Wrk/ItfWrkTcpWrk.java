@@ -8,19 +8,19 @@ import java.util.List;
 /**
  * @author GamezJ
  * @version 1.0
- * @created 15-nov.-2022 08:16:12
+ * 
  */
 public interface ItfWrkTcpWrk {
 
 	/**
 	 * 
-	 * @param string
+	 * @param user
 	 */
-	public void ajouterUser(String[] string);
+	public void ajouterUser(User user);
 
 	/**
 	 * 
-	 * @param string
+	 * 
      * @return list des utilisateur
 	 */
 	public List<User> lireUser();
@@ -35,6 +35,6 @@ public interface ItfWrkTcpWrk {
 	 * 
 	 * @param string
 	 */
-	public void supprimerUser(String[] string);
+	public void supprimerUser(User user);
 
 }

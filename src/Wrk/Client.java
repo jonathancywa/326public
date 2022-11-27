@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Wrk;
 
 import java.io.BufferedReader;
@@ -17,6 +14,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author Gamezj
+ * @version 1.0
  */
 public class Client extends Thread {
 
@@ -46,7 +44,7 @@ public class Client extends Thread {
 
     /**
      *
-     * @param ms
+     * @param ms temps d'attente en milisecondes
      */
     public void attendre(long ms) {
         try {
@@ -56,6 +54,10 @@ public class Client extends Thread {
         }
     }
 
+    /**
+     * permet de lancer le thread client TCP, appelle la méthode voulu dans le worker selon le message reçu
+     * 
+     */
     @Override
     public void run() {
         String[] info;
@@ -113,6 +115,10 @@ public class Client extends Thread {
 
     }
 
+    /**
+     *
+     * @param msg message a envoyer
+     */
     public void ecrire(String msg) {
         try {
             out.write(msg + "\n");
@@ -122,10 +128,18 @@ public class Client extends Thread {
         }
     }
 
+    /**
+     *
+     * @return si le thread tourne
+     */
     public boolean isRunning() {
         return running;
     }
 
+    /**
+     *
+     * @param running false pour stoper le thread
+     */
     public void setRunning(boolean running) {
         this.running = running;
     }

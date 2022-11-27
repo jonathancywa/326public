@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author GamezJ
  * @version 1.0
- * @created 15-nov.-2022 08:16:12
+ * 
  */
 public class Wrk implements ItfWrkTcpWrk {
 
@@ -66,15 +66,15 @@ public class Wrk implements ItfWrkTcpWrk {
 
     /**
      *
-     * @param string
+     * @param user
      */
-    public void ajouterUser(String[] string) {
+    public void ajouterUser(User user) {
 
     }
 
     /**
      *
-     * @param string
+     * 
      */
     public List<User> lireUser() {
         return refWrkDb.dbLirePersonnes();
@@ -106,11 +106,12 @@ public class Wrk implements ItfWrkTcpWrk {
     }
 
     /**
-     *
-     * @param string
+     * permet de suprimer un utilisateur
+     * @param user utilisateur a supprimer
+     * 
      */
-    public void supprimerUser(String[] string) {
-
+    public void supprimerUser(User user) {
+        refWrkDb.dbSupprimerUser(user);
     }
 
     public byte[] getVideo() {

@@ -15,7 +15,7 @@ import javax.persistence.Query;
 /**
  * @author GamezJ
  * @version 1.0
- * @created 15-nov.-2022 08:16:12
+ *
  */
 public class WrkDb implements ItfWrkDb {
 
@@ -37,7 +37,7 @@ public class WrkDb implements ItfWrkDb {
 
     /**
      *
-     * @param user
+     * @param pu
      */
     public void dbConnecter(String pu) throws Exception {
        

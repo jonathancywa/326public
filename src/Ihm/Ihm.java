@@ -19,7 +19,7 @@ import javafx.util.Callback;
 /**
  * @author GamezJ
  * @version 1.0
- * @created 15-nov.-2022 08:16:12
+ * 
  */
 public class Ihm implements ItfIhmCtrl {
 
@@ -38,17 +38,28 @@ public class Ihm implements ItfIhmCtrl {
     private int igm = 0;
     private CtrlIhmGestion ihmUser;
 
+    /**
+     * constructeur ihm, définit le fichier a utiliser pour l'ihm
+     */
     public Ihm() {
         fxml = "/Ihm/Ihm.fxml";
         refCtrl = null;
         
     }
 
+    /**
+     *
+     * @param refCtrl set la reférence controleur
+     */
     public void setRefCtrl(Ctrl refCtrl) {
         this.refCtrl = refCtrl;
         ihmUser = new CtrlIhmGestion(refCtrl);
     }
 
+    /**
+     *permet de démmarer l'ihm
+     */
+    
     public void start() {
         /*
          * Callback pour le ControllerFactory, quand JavaFX voudra créer le
@@ -89,17 +100,18 @@ public class Ihm implements ItfIhmCtrl {
     }
 
     /**
-     *
+     * permet de définir l'état dse bouton
      * @param btn
      * @param isEnabled
+     * @deprecated pas implémenter
      */
     public void setBtn(Button btn, boolean isEnabled) {
 
     }
 
     /**
-     *
-     * @param image
+     * permet d'afficher une image
+     * @param image image a afficher
      */
     @Override
     public void showVideo(byte[] image) {
@@ -107,7 +119,10 @@ public class Ihm implements ItfIhmCtrl {
         img_video.setImage(new Image(new ByteArrayInputStream(image)));
         
     }
-
+/**
+ * permet d'ouvrire l'ihm de gestion des utilisateur
+ * @param event 
+ */
     @FXML
     private void act_btn_gestionUser(ActionEvent event) {
         ihmUser.start();
@@ -115,7 +130,10 @@ public class Ihm implements ItfIhmCtrl {
      
         
     }
-
+/**
+ * permet de connecter le robot
+ * @param event 
+ */
     @FXML
     private void act_btn_robot(ActionEvent event) {
 

@@ -6,7 +6,7 @@ import ch.emf.info.robot.links.bean.RobotState;
 /**
  * @author GamezJ
  * @version 1.0
- * @created 15-nov.-2022 08:16:12
+ * 
  */
 public class WrkRobotControl implements ItfWrkRobotCtrlClient {
 
