@@ -28,7 +28,7 @@ public class Ihm implements ItfIhmCtrl {
 //	private Fenetre fenetre;
 //	private ImgView imgView;
     private Ctrl refCtrl;
-    public IhmGestionUser m_IhmGestionUser;
+  
     @FXML
     private ImageView img_video;
     @FXML

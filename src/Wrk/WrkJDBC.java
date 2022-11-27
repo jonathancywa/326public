@@ -90,30 +90,27 @@ public class WrkJDBC {
 
         return listeUser;
     }
-    public boolean lireUser(String login, String password)
-    {
+
+    public boolean lireUser(String login, String password) {
         boolean retour = false;
-         final String SQL_SELECT = "SELECT * FROM  t_user WHERE "
+        final String SQL_SELECT = "SELECT * FROM  t_user WHERE "
                 + "login="
                 + "?;";
 
         // préparation d'une requête d'insertion
-        try ( PreparedStatement ps = dbConnexion.prepareStatement(SQL_SELECT)){
-           ps.setString(1, login);
+        try ( PreparedStatement ps = dbConnexion.prepareStatement(SQL_SELECT)) {
+            ps.setString(1, login);
 
             // exécution de la requête
-            ResultSet rs  = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             // récuperation de la clé générée et stockage dans l'objet personne
-         
             rs.next();
-          
-                if (rs.getString("password").equals(password)) {
-                    retour = true;
-                }
 
-                
-            
+            if (rs.getString("password").equals(password)) {
+                retour = true;
+            }
+
 //            p.setPkPers(rs.getInt(1));
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -129,7 +126,6 @@ public class WrkJDBC {
 // désactivation de l’auto-commit 
             dbConnexion.setAutoCommit(false);
 
-
             if (true) {
 
                 dbConnexion.setAutoCommit(true);
@@ -137,7 +133,6 @@ public class WrkJDBC {
             } else {
 
 //                PreparedStatement ps = preparerRequeteModif(p);
-
 //                if (ps.executeUpdate() == 1) {
 //
 //                    dbConnexion.commit();
@@ -147,7 +142,6 @@ public class WrkJDBC {
 //                    dbConnexion.rollback();
 //
 //                }
-
 //réactiver l'auto-commit 
                 dbConnexion.setAutoCommit(true);
 
@@ -169,7 +163,7 @@ public class WrkJDBC {
             p.setTag(rs.getString("badgId"));
             p.setNom(rs.getString("nom"));
             p.setPrenom(rs.getString("prenom"));
-            //    p.setGrade((Grade) rs.getObject("grade"));
+            p.setGrade((Grade) rs.getObject("grade"));
 
         } catch (SQLException ex) {
 
@@ -185,14 +179,14 @@ public class WrkJDBC {
     public void dbCreerPersonne(User u) {
         final String SQL_INSERT = "INSERT INTO t_user "
                 + "(prenom, nom, login, password, badgId, badgeOk)"
-                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+                + " VALUES (?, ?, ?, ?, ?, ?);";
 
         // préparation d'une requête d'insertion
         try ( PreparedStatement ps = dbConnexion.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
             if (!u.getPrenom().isEmpty()) {
                 ps.setString(1, u.getPrenom());
             } else {
-
+                ps.setString(0, "/");
             }
 
             if (u.getNom() != null) {
@@ -200,6 +194,15 @@ public class WrkJDBC {
             } else {
                 ps.setString(2, u.getNom());
             }
+            ps.setString(3, u.getLogin());
+            ps.setString(4, u.getPassword());
+            if (!u.getTag().isEmpty()) {
+                ps.setString(6, u.getTag());
+            }else
+            {
+                ps.setString(6, "/");
+            }
+            ps.setBoolean(5, u.isBadge());
 
             // exécution de la requête
             int nb = ps.executeUpdate();
