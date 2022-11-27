@@ -58,8 +58,8 @@ public class CtrlIhmGestion implements CtrlIhmGestionUser{
     private final String fxml;
     private Scene principalScene;
     private Stage mainStage;
-    public CtrlIhmGestion() {
-        refCtrl = new Ctrl();
+    public CtrlIhmGestion(Ctrl ctrl) {
+       this.refCtrl = ctrl;
         popup = new Popup();
           fxml = "/Ihm/IhmGestionUser.fxml";
     }
@@ -131,6 +131,7 @@ public class CtrlIhmGestion implements CtrlIhmGestionUser{
 
     @FXML
     private void reload(ActionEvent event) {
+        lst_users.getItems().setAll(refCtrl.getUser()) ;
     }
 
     @FXML

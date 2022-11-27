@@ -41,11 +41,12 @@ public class Ihm implements ItfIhmCtrl {
     public Ihm() {
         fxml = "/Ihm/Ihm.fxml";
         refCtrl = null;
-        ihmUser = new CtrlIhmGestion();
+        
     }
 
     public void setRefCtrl(Ctrl refCtrl) {
         this.refCtrl = refCtrl;
+        ihmUser = new CtrlIhmGestion(refCtrl);
     }
 
     public void start() {

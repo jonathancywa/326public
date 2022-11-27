@@ -87,6 +87,11 @@ public class User {
         this.grade = grade;
     }
 
+    @Override
+    public String toString() {
+        return "nom : "+nom+" prenom : "+prenom+" login : "+login; 
+    }
+
     
     private String nom;
     private String prenom;

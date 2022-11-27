@@ -19,7 +19,7 @@ public class Ctrl implements CtrlIhm {
     private Ihm refIhm;
     private Wrk refWrk;
     private Robot robot = null;
-    public User m_User;
+   
 
     public Ctrl() {
 

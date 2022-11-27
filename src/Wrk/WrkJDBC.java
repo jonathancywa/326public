@@ -179,15 +179,15 @@ public class WrkJDBC {
     public boolean dbCreerPersonne(User u) {
         boolean retour = false;
         final String SQL_INSERT = "INSERT INTO t_user "
-                + "(prenom, nom, login, password, badgId, badgeOk)"
-                + " VALUES (?, ?, ?, ?, ?, ?);";
+                + "(prenom, nom, login, password, badgId, badgeOk, fk_grade)"
+                + " VALUES (?, ?, ?, ?, ?, ?, ?);";
 
         // préparation d'une requête d'insertion
         try ( PreparedStatement ps = dbConnexion.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
-            if (!u.getPrenom().isEmpty()) {
+            if (u.getPrenom() != null) {
                 ps.setString(1, u.getPrenom());
             } else {
-                ps.setString(0, "/");
+                ps.setString(1, "/");
             }
 
             if (u.getNom() != null) {
@@ -197,13 +197,14 @@ public class WrkJDBC {
             }
             ps.setString(3, u.getLogin());
             ps.setString(4, u.getPassword());
-            if (!u.getTag().isEmpty()) {
+            if (u.getTag() != null) {
                 ps.setString(6, u.getTag());
             }else
             {
-                ps.setString(6, "/");
+                ps.setBoolean(6, true);
             }
             ps.setBoolean(5, u.isBadge());
+            ps.setInt(7, 2);
 
             // exécution de la requête
             int nb = ps.executeUpdate();
@@ -214,6 +215,7 @@ public class WrkJDBC {
             retour = true;
 //            p.setPkPers(rs.getInt(1));
         } catch (SQLException ex) {
+            System.out.println(ex);
 
         }
         return retour;

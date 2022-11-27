@@ -1,6 +1,4 @@
-/*
 
- */
 package serveur_g04;
 
 import Ctrl.Ctrl;

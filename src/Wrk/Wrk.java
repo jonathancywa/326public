@@ -102,7 +102,7 @@ public class Wrk implements ItfWrkTcpWrk {
         u.setLogin(login);
         u.setPassword(password);
         refWrkDb.dbCreerPersonne(u);
-        wrkTcp.EnvoieMessage("badge;" + refWrkDb.dbCreerPersonne(u));
+//        wrkTcp.EnvoieMessage("badge;" + refWrkDb.dbCreerPersonne(u));
     }
 
     /**
