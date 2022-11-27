@@ -10,9 +10,10 @@ import java.util.List;
 import javafx.application.Platform;
 
 /**
+ * Contrôleur principale de l'application
  * @author GamezJ
  * @version 1.0
- * @created 15-nov.-2022 08:16:11
+ *  15-nov.-2022 08:16:11
  */
 public class Ctrl implements CtrlIhm {
 

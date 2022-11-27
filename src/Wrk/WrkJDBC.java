@@ -205,7 +205,7 @@ public class WrkJDBC {
             }
             ps.setBoolean(5, u.isBadge());
             ps.setInt(7, 2);
-
+            
             // exécution de la requête
             int nb = ps.executeUpdate();
 

@@ -9,7 +9,16 @@ package beans;
  * @author GamezJ
  */
 public class User {
-
+/**
+ * constructeurs User
+ * @param nom nom de l'utilisateur
+ * @param prenom prenom de l'utilisateur
+ * @param login identifiant de connexion de l'utilisateur
+ * @param password mot de passe de l'utilisateur
+ * @param tag id du tag de l'utilisateur
+ * @param badge boolean, true si l'utilisateur ose utiliser un badge
+ * @param grade Grade de l'utilisateur
+ */
     public User(String nom, String prenom, String login, String password, String tag, boolean badge, Grade grade) {
         this.nom = nom;
         this.prenom = prenom;
@@ -29,7 +38,11 @@ public class User {
         this.login = login;
         this.password = password;
     }
-
+/**
+ * retourne le nom de l'utilisateur
+ * @return nom de l'utilisateur
+ * test text
+ */
     public String getNom() {
         return nom;
     }
