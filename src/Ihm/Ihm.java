@@ -36,10 +36,12 @@ public class Ihm implements ItfIhmCtrl {
     @FXML
     private Button btn_robot;
     private int igm = 0;
+    private CtrlIhmGestion ihmUser;
 
     public Ihm() {
         fxml = "/Ihm/Ihm.fxml";
         refCtrl = null;
+        ihmUser = new CtrlIhmGestion();
     }
 
     public void setRefCtrl(Ctrl refCtrl) {
@@ -107,8 +109,8 @@ public class Ihm implements ItfIhmCtrl {
 
     @FXML
     private void act_btn_gestionUser(ActionEvent event) {
-   refCtrl.hashPasword();
-        System.out.println("oui");
+        ihmUser.start();
+      
      
         
     }

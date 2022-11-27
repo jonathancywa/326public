@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ihm.IhmController">
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ihm.Ihm">
    <children>
       <ImageView fx:id="img_video" fitHeight="399.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true" />
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="153.0" spacing="20.0">

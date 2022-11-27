@@ -6,14 +6,21 @@ package Ihm;
 
 import Ctrl.Ctrl;
 import beans.User;
-import java.util.List;
+import java.io.IOException;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import javafx.util.Callback;
 import other.Popup;
 //import app.helpers.JfxPopup;
 /**
@@ -48,9 +55,44 @@ public class CtrlIhmGestion implements CtrlIhmGestionUser{
     private Button btn_nouveau;
     private Ctrl refCtrl;
     private Popup popup;
+    private final String fxml;
+    private Scene principalScene;
+    private Stage mainStage;
     public CtrlIhmGestion() {
         refCtrl = new Ctrl();
         popup = new Popup();
+          fxml = "/Ihm/IhmGestionUser.fxml";
+    }
+    public void start(){
+          Callback<Class<?>, Object> controllerFactory = type -> {
+            return this;
+        };
+
+        // Seulement si JDK <= 8 (il faudra faire un « fix imports » !)
+   //    PlatformImpl.startup(() -> {
+        // Seulement si JDK > 8 (il faudra faire un « fix imports » !), nouvelle méthode standardisée par Java
+//        Platform.startup(() -> {
+            try {
+                mainStage = new Stage();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml));
+                fxmlLoader.setControllerFactory(controllerFactory);
+                Parent root = (Parent) fxmlLoader.load();
+                principalScene = new Scene(root);
+                mainStage.setScene(principalScene);
+                mainStage.setTitle("java");
+                mainStage.setMinWidth(900);   // Pour limiter la taille min
+                mainStage.setMinHeight(750);   // Pour limiter la taille min
+
+                mainStage.setOnCloseRequest((WindowEvent e) -> {
+
+                });
+
+                mainStage.show();
+            } catch (IOException ex) {
+                System.out.println("Can't start the IHM because : " + ex);
+                Platform.exit();
+            }
+//        });
     }
     
     
