@@ -11,8 +11,8 @@ public class Grade {
      * grade
      * @param grade
      */
-    public Grade(String grade) {
-        this.grade = grade;
+    public Grade() {
+      
     }
 
     /**
@@ -41,7 +41,7 @@ public class Grade {
 
     @Override
     public String toString() {
-        return "Grade{ grade=" + grade + '}';
+        return  grade;
     }
     
     

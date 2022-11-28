@@ -255,10 +255,10 @@ public class WrkJDBC {
             ResultSet rs = ps.executeQuery();
 
             // récuperation de la clé générée et stockage dans l'objet personne
-            rs.next();
+           
 
             while (rs.next()) {                
-                retour.add(grade(rs.getString("grade"),rs.getInt("pk_grade")));
+                retour.add(grade(rs));
             }
 
 //            p.setPkPers(rs.getInt(1));
@@ -267,9 +267,14 @@ public class WrkJDBC {
         }
         return retour;
     }
-    private Grade grade(String grade, int fk){
-        Grade g = new Grade(grade);
-        g.setFk(fk);
+    private Grade grade(ResultSet rs){
+        Grade g = new Grade();
+        try {
+               g.setGrade(rs.getString("grade"));
+        g.setFk(rs.getInt("PK_grade"));
+        } catch (Exception e) {
+        }
+     
         return g;
     }
 
