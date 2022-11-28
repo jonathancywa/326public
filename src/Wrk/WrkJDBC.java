@@ -242,5 +242,35 @@ public class WrkJDBC {
         }
         return retour;
     }
+    public List<Grade> getGrade(){
+        List<Grade> retour = new ArrayList<>();
+        final String SQL_SELECT = "SELECT * FROM  t_grade ; "
+                ;
+
+        // préparation d'une requête d'insertion
+        try ( PreparedStatement ps = dbConnexion.prepareStatement(SQL_SELECT)) {
+           
+
+            // exécution de la requête
+            ResultSet rs = ps.executeQuery();
+
+            // récuperation de la clé générée et stockage dans l'objet personne
+            rs.next();
+
+            while (rs.next()) {                
+                retour.add(grade(rs.getString("grade"),rs.getInt("pk_grade")));
+            }
+
+//            p.setPkPers(rs.getInt(1));
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return retour;
+    }
+    private Grade grade(String grade, int fk){
+        Grade g = new Grade(grade);
+        g.setFk(fk);
+        return g;
+    }
 
 }

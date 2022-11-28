@@ -30,12 +30,20 @@ public class Grade {
     public void setGrade(String grade) {
         this.grade = grade;
     }
+
+    public int getFk() {
+        return fk;
+    }
+
+    public void setFk(int fk) {
+        this.fk = fk;
+    }
     
     
     
     
     
     
-    
+    private int fk;
     private String grade;
 }

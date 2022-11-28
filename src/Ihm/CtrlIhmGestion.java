@@ -5,6 +5,7 @@
 package Ihm;
 
 import Ctrl.Ctrl;
+import beans.Grade;
 import beans.User;
 import java.io.IOException;
 import javafx.application.Platform;
@@ -45,7 +46,7 @@ public class CtrlIhmGestion implements CtrlIhmGestionUser{
     @FXML
     private CheckBox cbx_badgeOk;
     @FXML
-    private ComboBox<?> cmbx_grade;
+    private ComboBox<Grade> cmbx_grade;
     @FXML
     private Button btn_enregister;
     @FXML
@@ -59,6 +60,7 @@ public class CtrlIhmGestion implements CtrlIhmGestionUser{
     private final String fxml;
     private Scene principalScene;
     private Stage mainStage;
+    private boolean bdg;
 
     /**
      * constructeur
@@ -118,7 +120,7 @@ public class CtrlIhmGestion implements CtrlIhmGestionUser{
 
     /**
      *
-     * @param user
+     * @param user utilisateur a supprimer
      */
     @Override
     public void deleteUser(User user) {
@@ -126,16 +128,24 @@ public class CtrlIhmGestion implements CtrlIhmGestionUser{
     }
 
     /**
-     *
+     *permet d'afficher les utilisateurs
      */
     @Override
     public void getUser() {
-      lst_users.getItems().setAll(refCtrl.getUser()) ;
+        try {
+              lst_users.getItems().setAll(refCtrl.getUser()) ;
+        } catch (Exception e) {
+        }
+    
     }
-
+/**
+ * permet de definir si l'utilisateur a le droit d'utiliser le badge
+ * @param event 
+ */
     @FXML
     private void cbx_badge(ActionEvent event) {
-        
+        bdg = cbx_badgeOk.selectedProperty().get();
+        System.out.println(bdg);
     }
     /**
      * permet d'enregistrer les modification de l'utilisateur
