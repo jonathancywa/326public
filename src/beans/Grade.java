@@ -38,6 +38,11 @@ public class Grade {
     public void setFk(int fk) {
         this.fk = fk;
     }
+
+    @Override
+    public String toString() {
+        return "Grade{ grade=" + grade + '}';
+    }
     
     
     
