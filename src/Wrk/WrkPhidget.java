@@ -16,10 +16,9 @@ public class WrkPhidget extends Thread {
 
     }
 
-
     /**
      *
-     * @param string
+     * @param string text a afficher
      */
     public void afficher(String string) {
         try {
@@ -33,7 +32,7 @@ public class WrkPhidget extends Thread {
 
     /**
      *
-     * @param string
+     * @param string id du lcd
      */
     public boolean initialise(String string) {
         boolean retour = false;

@@ -31,7 +31,11 @@ public class WrkJDBC {
         conf.load(new FileInputStream("config/mysql.conf"));
         return conf;
     }
-
+/**
+ * permet de connecter la base de donnée
+ * @param nomDB le nom de la base de donnée a utiliser
+ * @throws IOException 
+ */
     public void connecter(String nomDB) throws IOException {
 
         final String url = lireProperties().getProperty("URL_DB");
@@ -49,6 +53,9 @@ public class WrkJDBC {
         }
 
     }
+    /** permet de deconecer la base de donnée
+     * 
+     */
 
     public void dbDeconnecter() {
         try {
@@ -60,7 +67,10 @@ public class WrkJDBC {
 
         }
     }
-
+/**
+ * permet de voir si la db est connecté
+ * @return 
+ */
     public boolean dbEstConnectee() {
         boolean estConnecte = false;
         try {
@@ -72,7 +82,10 @@ public class WrkJDBC {
 
         return estConnecte;
     }
-
+/**
+ * permet de lire tout les personnes de la base de donnée
+ * @return la liste de tout les utilisateur
+ */
     public List<User> dbLirePersonnes() {
         final String SQL = "SELECT * FROM t_user ";//ORDER BY "arg"
         List<User> listeUser = new ArrayList<>();
@@ -88,7 +101,12 @@ public class WrkJDBC {
 
         return listeUser;
     }
-
+/**
+ * permet de lire un utilisateur et retourne true si le login et mot de passe est correct
+ * @param login
+ * @param password
+ * @return true si la combinaison login mot de passe est correct
+ */
     public boolean lireUser(String login, String password) {
         boolean retour = false;
         final String SQL_SELECT = "SELECT * FROM  t_user WHERE "
@@ -150,7 +168,11 @@ public class WrkJDBC {
         }
 
     }
-
+/**
+ * permet de créer l'utilisateur
+ * @param rs
+ * @return 
+ */
     private User userRs(ResultSet rs) {
         User p = new User();
         try {
@@ -218,6 +240,11 @@ public class WrkJDBC {
         }
         return retour;
     }
+    /**
+     * permet de supprimer un utilisateur
+     * @param u utilisateur a supprimer.
+     * @return true si l'opération a réussit
+     */
     public boolean dbSupprimerUser(User u) {
         boolean retour = false;
         final String SQL_delete = "delete  FROM  t_user "
@@ -242,6 +269,10 @@ public class WrkJDBC {
         }
         return retour;
     }
+    /**
+     * permet de récupérer les grades 
+     * @return la liste des grades
+     */
     public List<Grade> getGrade(){
         List<Grade> retour = new ArrayList<>();
         final String SQL_SELECT = "SELECT * FROM  t_grade ; "
@@ -267,6 +298,11 @@ public class WrkJDBC {
         }
         return retour;
     }
+    /**
+     * permet de créer le grade
+     * @param rs
+     * @return 
+     */
     private Grade grade(ResultSet rs){
         Grade g = new Grade();
         try {

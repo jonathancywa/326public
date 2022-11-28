@@ -8,8 +8,8 @@ package beans;
 public class Grade {
 
     /**
-     * grade
-     * @param grade
+     * constructeur grade
+     * 
      */
     public Grade() {
       
@@ -31,14 +31,26 @@ public class Grade {
         this.grade = grade;
     }
 
+    /**
+     *
+     * @return la fk du grade
+     */
     public int getFk() {
         return fk;
     }
 
+    /**
+     *
+     * @param fk
+     */
     public void setFk(int fk) {
         this.fk = fk;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return  grade;

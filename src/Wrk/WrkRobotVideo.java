@@ -17,20 +17,26 @@ public class WrkRobotVideo extends Thread {
     private int password = 1946706066;
     private Wrk refWrk;
 
+    /**
+     *
+     */
     public WrkRobotVideo() {
         super("Thread Etat Robot");
         refWrkUdp = new WrkUdp();
     }
 
-  
-
+    /**
+     *
+     * @return les image reçu du robot
+     */
     public byte[] getVideo() {
         return robot.getLastImage();
     }
 
     /**
      *
-     * @param robot
+     * @param robot le robot a utiliser
+     * @return true si la connexion a réussit
      */
     public boolean initialise(Robot robot) {
 
@@ -55,10 +61,19 @@ public class WrkRobotVideo extends Thread {
         return retour;
     }
 
+    /**
+     *
+     * @param running 
+     */
     public void setRunning(boolean running) {
         this.running = running;
     }
 
+    /**
+     *
+     * @param robot le robot a deconnecter
+     * @return true si l'opération a réussit
+     */
     public boolean disconnect(Robot robot) {
         boolean retour = false;
 
@@ -77,6 +92,9 @@ public class WrkRobotVideo extends Thread {
         return retour;
     }
 
+    /**
+     *permet de lancer le thread
+     */
     public void run() {
         if (robot == null) {
             initialise(robot);
@@ -102,7 +120,10 @@ public class WrkRobotVideo extends Thread {
         }
 
     }
-
+/**
+ * permet de mettre le thread en pause pour un temps voulu
+ * @param millis 
+ */
     private void _sleep(int millis) {
         try {
             sleep(millis);
@@ -112,6 +133,10 @@ public class WrkRobotVideo extends Thread {
         }
     }
 
+    /**
+     *permet de seter la référence du wrk
+     * @param refWrk le wrk a utiliser
+     */
     public void setRefWrk(Wrk refWrk) {
         this.refWrk = refWrk;
     }

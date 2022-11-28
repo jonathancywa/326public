@@ -24,11 +24,21 @@ public class WrkTCP extends Thread {
         private ServerSocket serverSocket;
         private volatile ArrayList<Client> clients;
         private Client client;
-	public WrkTCP(Wrk refWrk){
+
+    /**
+     *
+     * @param refWrk
+     */
+    public WrkTCP(Wrk refWrk){
             this.refWrk = refWrk;
           
 	}
-        public void demarrerServeur(int port) {
+
+    /**
+     *permet d'initialiser le socket
+     * @param port port a utiliser pour le socket
+     */
+    public void demarrerServeur(int port) {
         try {
             serverSocket = new ServerSocket(port);
             serverSocket.setSoTimeout(1000);
@@ -40,7 +50,11 @@ public class WrkTCP extends Thread {
         }
         clients = new ArrayList<>();
     }
-         public void arreterServeur() {
+
+    /**
+     *permet de stoper le serveur
+     */
+    public void arreterServeur() {
         try {
             serverSocket.close();
         } catch (IOException ex) {
@@ -51,14 +65,18 @@ public class WrkTCP extends Thread {
 
 	
 	/**
-	 * 
-	 * @param string
+	 * permet d'envoyer des messages au client
+	 * @param string message a envoyer
 	 */
 	public void EnvoieMessage(String string){
             client.ecrire(string);
 	}
 
-	public boolean isRunning(){
+    /**
+     *
+     * @return
+     */
+    public boolean isRunning(){
 		return false;
 	}
 
@@ -72,7 +90,10 @@ public class WrkTCP extends Thread {
 
 	}
 
-	 public void run() {
+    /**
+     *permet de lancer le thread
+     */
+    public void run() {
         running = true;
         while (running) {
             try {
@@ -105,17 +126,30 @@ public class WrkTCP extends Thread {
      //   wrk.recevoirMessageInfo("Serveur fermé");
     }
 
-	public void setRunning(){
+    /**
+     *
+     */
+    public void setRunning(){
 
 	}
-         public void attendre(long ms) {
+
+    /**
+     *
+     * @param ms
+     */
+    public void attendre(long ms) {
         try {
             sleep(ms);
         } catch (InterruptedException ex) {
 
         }
     }
-         public void removeClient(Client client) {
+
+    /**
+     *
+     * @param client
+     */
+    public void removeClient(Client client) {
         clients.remove(client);
     }
 }//end WrkTCP
