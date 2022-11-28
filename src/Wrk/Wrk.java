@@ -1,6 +1,7 @@
 package Wrk;
 
 import Ctrl.Ctrl;
+import beans.Grade;
 
 import beans.User;
 import ch.emf.info.robot.links.Robot;
@@ -82,6 +83,13 @@ public class Wrk implements ItfWrkTcpWrk {
      */
     public List<User> lireUser() {
         return refWrkDb.dbLirePersonnes();
+    }
+    /**
+     * permet de lire les grade
+     * @return les grades de la DB
+     */
+    public List<Grade> lireGrade(){
+        return refWrkDb.getGrade();
     }
 
     /**

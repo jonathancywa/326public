@@ -177,6 +177,7 @@ public class CtrlIhmGestion implements CtrlIhmGestionUser{
     @FXML
     private void reload(ActionEvent event) {
         lst_users.getItems().setAll(refCtrl.getUser()) ;
+        cmbx_grade.getItems().setAll(refCtrl.getGrade());
     }
 /**
  * permet d'ajouter un nouvelle utilisateur 

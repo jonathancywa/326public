@@ -1,9 +1,9 @@
 package Ctrl;
 
 import Ihm.CtrlIhm;
-import Ihm.CtrlIhmGestionUser;
 import Ihm.Ihm;
 import Wrk.Wrk;
+import beans.Grade;
 import beans.User;
 import ch.emf.info.robot.links.Robot;
 import java.util.List;
@@ -101,6 +101,13 @@ public class Ctrl implements CtrlIhm {
             refIhm.showVideo(img);
         });
         
+    }
+    /**
+     * permet de recupérer les grades
+     * @return la liste des grades
+     */
+    public List<Grade> getGrade(){
+        return refWrk.lireGrade();
     }
     
 }//end Ctrl
