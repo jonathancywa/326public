@@ -27,28 +27,32 @@ public class Wrk implements ItfWrkTcpWrk {
     }
 
     /**
-     *
-     * @param string
+     * permet d'afficher du text sur le lcd
+     * @param string String a afficher sur le lcd
      */
     public void afficheLcd(String string) {
         wrkTcp.EnvoieMessage(string);
     }
+    /**
+     * 
+     * @param refCtrl refCtrl
+     */
 
     public void setRefCtrl(Ctrl refCtrl) {
         this.refCtrl = refCtrl;
     }
 
     /**
-     *
-     * @param user
+     * permet de definir l'utilisateur actuellement connecté
+     * @param user utilisateur actuellement connecté
      */
     public void setConnectedUser(User user) {
-
+        
     }
 
     /**
-     *
-     * @param string
+     * envoie au wrkRobotControl les commandes.
+     * @param string touche appuyé et angle si joystick (touche:angle,magnitude)
      */
     public void setMouvement(String[] string) {
 
@@ -57,7 +61,7 @@ public class Wrk implements ItfWrkTcpWrk {
 
     /**
      *
-     * @param image
+     * @param image image a afficher
      */
     public void traitementVideo(byte[] image) {
 
@@ -66,14 +70,14 @@ public class Wrk implements ItfWrkTcpWrk {
 
     /**
      *
-     * @param user
+     * @param user utilisateur a ajouter
      */
     public void ajouterUser(User user) {
 
     }
 
     /**
-     *
+     *permet de lire les utilisateur de la base de donnée
      * 
      */
     public List<User> lireUser() {
@@ -96,7 +100,11 @@ public class Wrk implements ItfWrkTcpWrk {
     public void badgLogin(String badge) {
         wrkTcp.EnvoieMessage("save;" + true);
     }
-
+/**
+ * permet de créer un nouvelle utilisateur
+ * @param login login de l'utilisateur
+ * @param password mot de passe de l'utilisteur
+ */
     public void createUser(String login, String password) {
         User u = new User();
         u.setLogin(login);
@@ -113,12 +121,18 @@ public class Wrk implements ItfWrkTcpWrk {
     public void supprimerUser(User user) {
         refWrkDb.dbSupprimerUser(user);
     }
-
+/**
+ * permet de recupérer la vidéo du robot
+ * @return retourne l'image
+ */
     public byte[] getVideo() {
 
         return robot.getLastImage();
     }
-
+/**
+ * permet de démarrer le robot
+ * @param robot robot a utiliser
+ */
     public void startRobot(Robot robot) {
         wrkRobotVideo = new WrkRobotVideo();
         wrkRobotVideo.setRefWrk(this);
@@ -137,6 +151,10 @@ public class Wrk implements ItfWrkTcpWrk {
         }
 
     }
+    /**
+     * permet de tuer le thread robot
+     * @param robot robot a tuer
+     */
 
     public void stopRobot(Robot robot) {
         wrkRobotVideo.setRunning(false);
@@ -151,7 +169,9 @@ public class Wrk implements ItfWrkTcpWrk {
         wrkRobotVideo = null;
 
     }
-
+/**
+ * démarre les thread tcp et la connexion a la base de donnée
+ */
     public void demarrerServeur() {
         wrkTcp = new WrkTCP(this);
         wrkTcp.demarrerServeur(8888);
