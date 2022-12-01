@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -154,12 +155,17 @@ public class CtrlIhmGestion implements CtrlIhmGestionUser{
 
     @FXML
     private void enregister(ActionEvent event) {
+         Alert alert = new Alert(Alert.AlertType.WARNING,"veuiller remplir tout les champ");
+        User u = new User();
         if (txt_login.getText().isEmpty() || txt_password.getText().isEmpty()) {
+          alert.show();
             
-            System.out.println("popup nok");
         }else{
             System.out.println("");
+            refCtrl.addUser(txt_login.getText(), txt_password.getText());
+            
         }
+        getUser();
     }
 /**
  * permet de supprimer l'utilisateur selectionner

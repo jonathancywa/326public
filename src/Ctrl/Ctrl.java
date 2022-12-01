@@ -74,6 +74,7 @@ public class Ctrl implements CtrlIhm {
      */
     public void addUser(String login, String password) {
         refWrk.createUser(login, password);
+        
     }
 
     /**
