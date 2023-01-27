@@ -81,7 +81,8 @@ public class Client extends Thread {
                             refWrk.setMouvement(info);
                             break;
                         case "save":
-                            refWrk.createUser(option, option);
+                            String[] userPasswd = info[1].split(",");
+                            refWrk.createUser(userPasswd[0], userPasswd[1]);
                             break;
                         case "login":
                             String[] user = info[1].split(":");

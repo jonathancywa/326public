@@ -23,6 +23,9 @@ public class Wrk implements ItfWrkTcpWrk {
     private WrkTCP wrkTcp;
     private List<User> users;
 
+    /**
+     * constructeur
+     */
     public Wrk() {
         refWrkDb = new WrkJDBC();
     }
@@ -96,6 +99,7 @@ public class Wrk implements ItfWrkTcpWrk {
      *
      * @param login nom d'utilisateur pour le login
      * @param password mot de passe pour le login
+     * @throws java.io.IOException
      */
     public void loginUser(String login, String password) throws IOException {
         if (!refWrkDb.dbEstConnectee()) {
@@ -105,6 +109,10 @@ public class Wrk implements ItfWrkTcpWrk {
         wrkTcp.EnvoieMessage("login;" + refWrkDb.lireUser(login, password));
     }
 
+    /**
+     *
+     * @param badge numéro du badge a utiliser pour le login
+     */
     public void badgLogin(String badge) {
         wrkTcp.EnvoieMessage("save;" + true);
     }
