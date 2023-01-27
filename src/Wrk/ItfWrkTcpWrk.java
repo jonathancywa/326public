@@ -33,7 +33,7 @@ public interface ItfWrkTcpWrk {
 
 	/**
 	 * 
-	 * @param string
+	 * @param user
 	 */
 	public void supprimerUser(User user);
 

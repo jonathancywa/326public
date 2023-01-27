@@ -26,7 +26,7 @@ import javafx.util.Callback;
 import other.Popup;
 //import app.helpers.JfxPopup;
 /**
- *
+ * contrôleur de l'ihm principale
  * @author Jonathan Gamez
  * @version 1.0
  */

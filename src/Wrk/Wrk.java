@@ -58,6 +58,7 @@ public class Wrk implements ItfWrkTcpWrk {
      * envoie au wrkRobotControl les commandes.
      * @param string touche appuyé et angle si joystick (touche:angle,magnitude)
      */
+    @Override
     public void setMouvement(String[] string) {
 
         wrkRobotControl.setMouvement(string);

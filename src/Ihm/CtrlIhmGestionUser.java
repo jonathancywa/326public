@@ -5,6 +5,7 @@ import java.util.List;
 
 
 /**
+ * interface contrôleur de l'ihm des utilisateur
  * @author GamezJ
  * @version 1.0
  * 

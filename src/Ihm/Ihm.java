@@ -17,6 +17,7 @@ import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 
 /**
+ * Ihm principale du programme
  * @author GamezJ
  * @version 1.0
  * 

@@ -2,6 +2,7 @@ package Ihm;
 
 
 /**
+ * interface de l'ihm
  * @author GamezJ
  * @version 1.0
  * 
